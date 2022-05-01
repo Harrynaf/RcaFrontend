@@ -1,1 +1,55 @@
-<p>property-form works!</p>
+<form class="form-signin">
+    <div class="text-center mb-4">
+      <p>Update Delete or Create</p>
+    </div>
+  
+    <div class="form-label-group">
+    <label for="inputUname">Ecode</label>
+      <input type="username" id="inputUname" class="form-control" value="{{property.eCode}}" required="" autofocus="">   
+    </div>
+
+    <div class="form-label-group">
+        <label for="inputPassword">Password</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="password" required="">     
+    </div>
+
+    <div class="form-label-group">
+    <label for="inputEmail">Type</label>
+      <input type="email" id="inputEmail" class="form-control" value="{{property.type}}" required="">     
+    </div>
+    
+    <div class="form-label-group">
+        <label for="inputEmail">Name</label>
+          <input type="email" id="inputEmail" class="form-control" value="{{property.name}}" required="">     
+        </div>
+    
+    <div class="form-label-group">
+            <label for="inputEmail">Surname</label>
+              <input type="email" id="inputEmail" class="form-control" value="{{property.surname}}" required="">     
+            </div>
+            <div class="form-label-group">
+                <label for="inputEmail">Address</label>
+                  <input type="email" id="inputEmail" class="form-control" value="{{property.address}}" required="">     
+                </div>
+            
+            <div class="form-label-group">
+                    <label for="inputEmail">Phone Number</label>
+                      <input type="email" id="inputEmail" class="form-control" value="{{property.phone_number}}" required="">     
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="inputEmail">Type</label>
+                          <input type="email" id="inputEmail" class="form-control" value="{{property.user_Type}}" required="">     
+                        </div>
+                  
+  
+    <div class="select">
+        <select name="pets" id="pet-select">
+            <option value="update">Update</option>
+            <option value="delete">Delete</option>
+            <option value="create">Create</option>
+        </select>
+        
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm</button>
+  </form>

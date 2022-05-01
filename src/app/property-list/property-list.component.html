@@ -1,14 +1,40 @@
+<div [hidden] = "picked">
 <h4>Pick a property</h4> 
 <div class="card-container">
 <div *ngFor="let r of properties.values()" class="card m-3" style="width: 10rem;" [routerLink]="['/property-list/property-form', r.id]">
   <img [src]="" class="card-img-top">
   <div class="card-body">
-    <a ></a>
     <h5 class="card-title">{{r.eCode}}</h5>
         <p class="card-text">{{ r.address }}</p>
   </div>
 </div>  
+</div>
 </div> 
-
+<div [hidden] = "picked">
+<h4>Or find by user</h4> 
+<div class="card-container">
+<div *ngFor="let u of users.values()" class="card m-3" style="width: 10rem;" (click)= getPickedUser(u.id)>
+  <img [src]="" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{u.username}} {{ u.last_name}}</h5>
+        <p class="card-text">{{ u.email }}</p>
+  </div>
+</div>  
+</div>  
+</div>
 <router-outlet></router-outlet>
+<div [hidden] = "!picked" *ngIf="picked">
+  <h4>Pick a property</h4> 
+  <div class="card-container">
+  <div *ngFor="let p of pickedusersproperties.values()" class="card m-3" style="width: 10rem;" [routerLink]="['/property-list/property-form', p.id]">
+    <img [src]="" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">{{p.eCode}}</h5>
+          <p class="card-text">{{ p.address }}</p>
+    </div>
+  </div>  
+  </div>
+  </div> 
+{{pickedusersproperties | json}}
+
  
