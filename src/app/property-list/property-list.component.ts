@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpDataService } from '../http-data.service';
+import { HttpDataService } from '../service/http-data.service';
 
 @Component({
   selector: 'app-property-list',
@@ -13,16 +12,11 @@ export class PropertyListComponent implements OnInit {
   users: any;
   properties:any;
   loading:boolean = true;
-  isShow = false;
   pickedUserid=0;
-  picked=false;
+  pickedUserFlag=false;
   pickeduser:any;
   pickedusersproperties:any;
-  constructor(private _Activatedroute:ActivatedRoute,private service:HttpDataService) { 
-    this._Activatedroute.paramMap.subscribe(params => { 
-      this.pickedUserid = parseInt(params.get('id')!); 
-
-  })};
+  constructor(private service:HttpDataService) {}
 
   ngOnInit(): void {
     this.requestData();
@@ -46,21 +40,27 @@ export class PropertyListComponent implements OnInit {
     );
   }
  
-  toggleDisplay() {
-    this.isShow = !this.isShow;
-  }
   getPickedUser(id:number){
     this.pickedUserid=id;
-    this.picked=true;
+    this.pickedUserFlag=true;
 
     this.service.getUser(this.pickedUserid).subscribe(
       data => {
         this.pickeduser = data;
-        this.pickedusersproperties= this.pickeduser.properties;
+
+
+
+        this.pickedusersproperties = this.pickeduser.properties.filter((value: any, index: any) => {
+          const _value = JSON.stringify(value);
+          return index === this.pickeduser.properties.findIndex((obj: any) => {
+            return JSON.stringify(obj) === _value;
+          });
+        });
       },
       error => {},
       () => {this.loading = false;}
     );
 
+    
   }
 }

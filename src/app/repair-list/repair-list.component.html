@@ -1,1 +1,49 @@
-<p>repair-list works!</p>
+<div [hidden] = "pickedUserFlag">
+    <h4>Pick a repair</h4> 
+    <div class="card-container">
+    <div *ngFor="let r of repairs.values()" class="card m-3" style="width: 10rem; height:70px;" [routerLink]="['/repair-list/repair-form', r.id]">
+      <img [src]="" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{r.type}}</h5>
+            <p class="card-text">{{ r.status }}</p>
+            <p class="card-text">{{ r.cost }}</p>
+      </div>
+    </div>  
+    </div>
+    </div> 
+    <h4>Or find by user</h4> 
+    <div class="card-container">
+    <div *ngFor="let u of users.values()" class="card m-3" style="width: 10rem;" (click)= getPickedUser(u.id)>
+      <img [src]="" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{u.username}} {{ u.last_name}}</h5>
+            <p class="card-text">{{ u.email }}</p>
+      </div>
+    </div>  
+    </div>  
+    <div [hidden] = "!pickedUserFlag" *ngIf="pickedUserFlag">
+      <h4>Now pick a property</h4> 
+      <div class="card-container">
+      <div *ngFor="let p of pickedusersproperties.values()" class="card m-3" style="width: 10rem;" (click)= getPickedProperty(p.id)>
+        <img [src]="" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{p.eCode}}</h5>
+              <p class="card-text">{{ p.address }}</p>
+        </div>
+      </div>  
+      </div>
+      </div>
+      <div [hidden] = "!pickedPropertyFlag" *ngIf="pickedPropertyFlag">
+        <h4>Now pick a repair</h4> 
+        <div class="card-container">
+        <div *ngFor="let r of pickedproperty.repairs.values()" class="card m-3" style="width: 10rem; height:70px;" [routerLink]="['/repair-list/repair-form', r.id]">
+          <img [src]="" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{r.type}}</h5>
+            <p class="card-text">{{ r.status }}</p>
+            <p class="card-text">{{ r.cost }}</p>
+          </div>
+        </div>  
+        </div>
+      </div>
+      <router-outlet></router-outlet>

@@ -8,8 +8,10 @@ import { UserListComponent } from './user-list/user-list.component';
 import { PropertyListComponent } from './property-list/property-list.component';
 import { RepairListComponent } from './repair-list/repair-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
-import { HttpDataService } from './http-data.service';
+import { HttpDataService } from './service/http-data.service';
 import { PropertyFormComponent } from './property-form/property-form.component';
+import { UniquePipe } from './pipes/unique.pipe';
+import { RepairFormComponent } from './repair-form/repair-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { PropertyFormComponent } from './property-form/property-form.component';
     PropertyListComponent,
     RepairListComponent,
     UserFormComponent,
-    PropertyFormComponent
+    PropertyFormComponent,
+    UniquePipe,
+    RepairFormComponent
   ],
   imports: [
     BrowserModule,

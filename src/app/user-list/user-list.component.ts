@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpDataService } from '../http-data.service';
+import { HttpDataService } from '../service/http-data.service';
 
 
 @Component({

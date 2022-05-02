@@ -1,4 +1,4 @@
-<div [hidden] = "picked">
+<div [hidden] = "pickedUserFlag">
 <h4>Pick a property</h4> 
 <div class="card-container">
 <div *ngFor="let r of properties.values()" class="card m-3" style="width: 10rem;" [routerLink]="['/property-list/property-form', r.id]">
@@ -10,7 +10,6 @@
 </div>  
 </div>
 </div> 
-<div [hidden] = "picked">
 <h4>Or find by user</h4> 
 <div class="card-container">
 <div *ngFor="let u of users.values()" class="card m-3" style="width: 10rem;" (click)= getPickedUser(u.id)>
@@ -21,9 +20,7 @@
   </div>
 </div>  
 </div>  
-</div>
-<router-outlet></router-outlet>
-<div [hidden] = "!picked" *ngIf="picked">
+<div [hidden] = "!pickedUserFlag" *ngIf="pickedUserFlag">
   <h4>Pick a property</h4> 
   <div class="card-container">
   <div *ngFor="let p of pickedusersproperties.values()" class="card m-3" style="width: 10rem;" [routerLink]="['/property-list/property-form', p.id]">
@@ -34,7 +31,5 @@
     </div>
   </div>  
   </div>
-  </div> 
-{{pickedusersproperties | json}}
-
- 
+  </div>
+  <router-outlet></router-outlet>

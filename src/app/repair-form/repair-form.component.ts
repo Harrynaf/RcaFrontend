@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpDataService } from '../service/http-data.service';
 
 @Component({
-  selector: 'app-property-form',
-  templateUrl: './property-form.component.html',
-  styleUrls: ['./property-form.component.scss']
+  selector: 'app-repair-form',
+  templateUrl: './repair-form.component.html',
+  styleUrls: ['./repair-form.component.scss']
 })
-export class PropertyFormComponent implements OnInit {
+export class RepairFormComponent implements OnInit {
 
-  property: any;
+  repair: any;
   loading:boolean = true;
   id:any;
 constructor(private _Activatedroute:ActivatedRoute,private service:HttpDataService) { 
@@ -21,12 +21,13 @@ this.requestData();
   ngOnInit(): void {
   }
   requestData(){
-    this.service.getProperty(this.id).subscribe(
+    this.service.getRepair(this.id).subscribe(
       data => {
-        this.property = data;
+        this.repair = data;
       },
       error => {},
       () => {this.loading = false;}
     );
   }
+
 }
