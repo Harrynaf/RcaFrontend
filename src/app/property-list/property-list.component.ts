@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
 import { HttpDataService } from '../service/http-data.service';
 
 @Component({
@@ -24,14 +25,14 @@ export class PropertyListComponent implements OnInit {
 
   requestData(){
     
-    this.service.getAllProperty().subscribe(
+    this.service.getAllProperty().pipe(first()).subscribe(
       data => {
         this.properties = data;
       },
       error => {},
       () => {this.loading = false;}
     );
-    this.service.getAllUser().subscribe(
+    this.service.getAllUser().pipe(first()).subscribe(
       data => {
         this.users = data;
       },
@@ -40,27 +41,18 @@ export class PropertyListComponent implements OnInit {
     );
   }
  
-  getPickedUser(id:number){
+  getPickedUserProperies(id:number){
     this.pickedUserid=id;
     this.pickedUserFlag=true;
 
-    this.service.getUser(this.pickedUserid).subscribe(
+    this.service.getPropertyByUser(id).pipe(first()).subscribe(
       data => {
-        this.pickeduser = data;
-
-
-
-        this.pickedusersproperties = this.pickeduser.properties.filter((value: any, index: any) => {
-          const _value = JSON.stringify(value);
-          return index === this.pickeduser.properties.findIndex((obj: any) => {
-            return JSON.stringify(obj) === _value;
-          });
-        });
+        this.pickedusersproperties = data;
       },
       error => {},
       () => {this.loading = false;}
     );
 
-    
+
   }
 }

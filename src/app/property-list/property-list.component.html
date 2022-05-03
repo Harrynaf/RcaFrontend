@@ -12,7 +12,7 @@
 </div> 
 <h4>Or find by user</h4> 
 <div class="card-container">
-<div *ngFor="let u of users.values()" class="card m-3" style="width: 10rem;" (click)= getPickedUser(u.id)>
+<div *ngFor="let u of users.values()" class="card m-3" style="width: 10rem;" (click)= getPickedUserProperies(u.id)>
   <img [src]="" class="card-img-top">
   <div class="card-body">
     <h5 class="card-title">{{u.username}} {{ u.last_name}}</h5>

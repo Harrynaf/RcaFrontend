@@ -1,50 +1,53 @@
-<form class="form-signin">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="form-signin">
     <div class="text-center mb-4">
       <p>Update Delete or Create</p>
     </div>
   
     <div class="form-label-group">
-    <label for="inputUname">Username</label>
-      <input type="username" id="inputUname" class="form-control" value="{{user.username}}" required="" autofocus="">   
+    <label for="username">Username</label>
+      <input type="username" name="username" class="form-control" value="{{user.username}}" required="" autofocus="" ngModel #first="ngModel">   
     </div>
 
     <div class="form-label-group">
-        <label for="inputPassword">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="password" required="">     
+        <label for="password">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="password" required="" ngModel>     
     </div>
 
     <div class="form-label-group">
-    <label for="inputEmail">vat</label>
-      <input type="email" id="inputEmail" class="form-control" value="{{user.email}}" required="">     
+    <label for="vat">vat</label>
+      <input type="email" name="vat" class="form-control" value="{{user.vat}}" required="" ngModel>     
     </div>
     
     <div class="form-label-group">
-        <label for="inputEmail">Name</label>
-          <input type="email" id="inputEmail" class="form-control" value="{{user.name}}" required="">     
+        <label for="name">Name</label>
+          <input type="text" name="name" class="form-control" value="{{user.name}}" required="" ngModel>     
         </div>
     
     <div class="form-label-group">
-            <label for="inputEmail">Surname</label>
-              <input type="email" id="inputEmail" class="form-control" value="{{user.surname}}" required="">     
+            <label for="surname">Surname</label>
+              <input type="text" name="surname" class="form-control" value="{{user.surname}}" required="" ngModel>     
             </div>
             <div class="form-label-group">
-                <label for="inputEmail">Address</label>
-                  <input type="email" id="inputEmail" class="form-control" value="{{user.address}}" required="">     
+                <label for="address">Address</label>
+                  <input type="address" name="address" class="form-control" value="{{user.address}}" required="" ngModel>     
                 </div>
             
             <div class="form-label-group">
-                    <label for="inputEmail">Phone Number</label>
-                      <input type="email" id="inputEmail" class="form-control" value="{{user.phone_number}}" required="">     
+                    <label for="phone_number">Phone Number</label>
+                      <input type="text" name="phone_number" class="form-control" value="{{user.phone_number}}" required="" ngModel>     
                     </div>
 
                     <div class="form-label-group">
-                        <label for="inputEmail">Type</label>
-                          <input type="email" id="inputEmail" class="form-control" value="{{user.user_Type}}" required="">     
+                      <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" value="{{user.email}}" required="" ngModel>     
+                      </div>
+
+                    <div class="form-label-group">
+                        <label for="user_Type">Type</label>
+                          <input type="text" name="user_Type" class="form-control" value="{{user.user_Type}}" required="" ngModel>     
                         </div>
-                  
-  
     <div class="select">
-        <select name="pets" id="pet-select">
+        <select name="option" ngModel>
             <option value="update">Update</option>
             <option value="delete">Delete</option>
             <option value="create">Create</option>
@@ -53,3 +56,5 @@
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm</button>
   </form>
+  <h2>{{message}}</h2>
+  <!-- <h2>{{alteredUser | json}}</h2> -->

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 })
 export class HttpDataService {
 
-  id:any;
   constructor(private http:HttpClient) { 
   
   }
@@ -15,8 +14,7 @@ export class HttpDataService {
   urlAll:any;
 
   getUser(id: number){
-    this.id=id;
-    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user/'+this.id;
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user/'+id;
     console.log(this.url);
     return this.http.get(this.url);
   }
@@ -24,9 +22,24 @@ export class HttpDataService {
     this.urlAll = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user/all';
     return this.http.get(this.urlAll);
   }
+  createUser(user:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user';
+    return this.http.post(this.url,user);
+  }
+  updateUser(user:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user';
+    return this.http.put(this.url,user);
+  }
+  deleteUser(user:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user';
+    return this.http.delete(this.url,user);
+  }
+  // deleteUser(id:number){
+  //   this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user/'+id;
+  //   return this.http.delete(this.url);
+  // }
   getProperty(id: number){
-    this.id=id;
-    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property/'+this.id;
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property/'+id;
     console.log(this.url);
     return this.http.get(this.url);
   }
@@ -34,9 +47,24 @@ export class HttpDataService {
     this.urlAll = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property/all';
     return this.http.get(this.urlAll);
   }
+  getPropertyByUser(id: number){
+    this.urlAll = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property/user/'+id;
+    return this.http.get(this.urlAll);
+  }
+  createProperty(property:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property';
+    return this.http.post(this.url,property);
+  }
+  updateProperty(property:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property';
+    return this.http.put(this.url,property);
+  }
+  deleteProperty(property:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property';
+    return this.http.delete(this.url,property);
+  }
   getRepair(id: number){
-    this.id=id;
-    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair/'+this.id;
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair/'+id;
     console.log(this.url);
     return this.http.get(this.url);
   }
@@ -44,16 +72,21 @@ export class HttpDataService {
     this.urlAll = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair/all';
     return this.http.get(this.urlAll);
   }
-
-  // get(){
-  //   return ['Alice', 'Bob', 'Claire', 'David'];
-  // }
-
-  // get(){
-  //   return [
-  //     {first_name: 'Alice', age: 19}, 
-  //     {first_name: 'Bob', age:21}
-  //   ]
-  // }
+  getRepairByProperty(id: number){
+    this.urlAll = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair/property/'+id;
+    return this.http.get(this.urlAll);
+  }
+  createRepair(repair:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair';
+    return this.http.post(this.url,repair);
+  }
+  updateRepair(repair:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair';
+    return this.http.put(this.url,repair);
+  }
+  deleteRepair(repair:any){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair';
+    return this.http.delete(this.url,repair);
+  }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
 import { HttpDataService } from '../service/http-data.service';
 
 @Component({
@@ -17,8 +18,8 @@ export class RepairListComponent implements OnInit {
   pickedusersproperties:any;
   pickedusersrepairs:any;
   pickedproperty: any;
-  pickedPropertyid=0;
   pickedPropertyFlag= false;
+  pickedpropertyrepairs: any;
   constructor(private service:HttpDataService) {}
 
   ngOnInit(): void {
@@ -27,14 +28,14 @@ export class RepairListComponent implements OnInit {
 
   requestData(){
     
-    this.service.getAllRepair().subscribe(
+    this.service.getAllRepair().pipe(first()).subscribe(
       data => {
         this.repairs = data;
       },
       error => {},
       () => {this.loading = false;}
     );
-    this.service.getAllUser().subscribe(
+    this.service.getAllUser().pipe(first()).subscribe(
       data => {
         this.users = data;
       },
@@ -43,33 +44,26 @@ export class RepairListComponent implements OnInit {
     );
   }
  
-  getPickedUser(id:number){
+  getPickedUserProperies(id:number){
     this.pickedUserid=id;
     this.pickedUserFlag=true;
 
-    this.service.getUser(this.pickedUserid).subscribe(
+    this.service.getPropertyByUser(id).pipe(first()).subscribe(
       data => {
-        this.pickeduser = data;
-
-        this.pickedusersproperties = this.pickeduser.properties.filter((value: any, index: any) => {
-          const _value = JSON.stringify(value);
-          return index === this.pickeduser.properties.findIndex((obj: any) => {
-            return JSON.stringify(obj) === _value;
-          });
-        });
+        this.pickedusersproperties = data;
       },
       error => {},
       () => {this.loading = false;}
     );
+
+
   }
 
-  getPickedProperty(id:number){
-    this.pickedPropertyid=id;
+  getPickedPropertyRepairs(id:number){
     this.pickedPropertyFlag=true;
-
-    this.service.getProperty(this.pickedPropertyid).subscribe(
+    this.service.getRepairByProperty(id).pipe(first()).subscribe(
       data => {
-        this.pickedproperty = data;
+        this.pickedpropertyrepairs = data;
       },
       error => {},
       () => {this.loading = false;}

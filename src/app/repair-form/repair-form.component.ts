@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs';
 import { HttpDataService } from '../service/http-data.service';
 
 @Component({
@@ -21,7 +22,7 @@ this.requestData();
   ngOnInit(): void {
   }
   requestData(){
-    this.service.getRepair(this.id).subscribe(
+    this.service.getRepair(this.id).pipe(first()).subscribe(
       data => {
         this.repair = data;
       },

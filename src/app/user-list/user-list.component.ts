@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
 import { HttpDataService } from '../service/http-data.service';
 
 
@@ -22,7 +23,7 @@ export class UserListComponent implements OnInit {
 
   requestData(){
     
-    this.service.getAllUser().subscribe(
+    this.service.getAllUser().pipe(first()).subscribe(
       data => {
         this.response = data;
       },

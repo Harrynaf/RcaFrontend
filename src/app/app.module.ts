@@ -12,6 +12,7 @@ import { HttpDataService } from './service/http-data.service';
 import { PropertyFormComponent } from './property-form/property-form.component';
 import { UniquePipe } from './pipes/unique.pipe';
 import { RepairFormComponent } from './repair-form/repair-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RepairFormComponent } from './repair-form/repair-form.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [HttpDataService],
   bootstrap: [AppComponent]
