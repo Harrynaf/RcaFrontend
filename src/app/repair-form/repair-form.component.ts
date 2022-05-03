@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { HttpDataService } from '../service/http-data.service';
@@ -30,5 +31,5 @@ this.requestData();
       () => {this.loading = false;}
     );
   }
-
+  onSubmit(f: NgForm) {}
 }
