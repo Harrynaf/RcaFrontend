@@ -11,8 +11,9 @@
 </div>
 </div> 
 <h4>Or find by user</h4> 
+<h4>(Emulate logged in scenario)</h4> 
 <div class="card-container">
-<div *ngFor="let u of users.values()" class="card m-3" style="width: 10rem;" (click)= getPickedUserProperies(u.id)>
+<div *ngFor="let u of users.values()" class="card m-3" style="width: 10rem;" (click)= getPickedUserProperies(u.id,u.username)>
   <img [src]="" class="card-img-top">
   <div class="card-body">
     <h5 class="card-title">{{u.username}} {{ u.last_name}}</h5>
@@ -21,6 +22,7 @@
 </div>  
 </div>  
 <div [hidden] = "!pickedUserFlag" *ngIf="pickedUserFlag">
+  <h3>Logged in as {{pickedUsername}}</h3> 
   <h4>Pick a property</h4> 
   <div class="card-container">
   <div *ngFor="let p of pickedusersproperties.values()" class="card m-3" style="width: 10rem;" [routerLink]="['/property-list/property-form', p.id]">

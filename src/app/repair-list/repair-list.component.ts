@@ -20,6 +20,7 @@ export class RepairListComponent implements OnInit {
   pickedproperty: any;
   pickedPropertyFlag= false;
   pickedpropertyrepairs: any;
+  pickedUsername: any;
   constructor(private service:HttpDataService) {}
 
   ngOnInit(): void {
@@ -44,8 +45,9 @@ export class RepairListComponent implements OnInit {
     );
   }
  
-  getPickedUserProperies(id:number){
+  getPickedUserProperies(id:number,name:string){
     this.pickedUserid=id;
+    this.pickedUsername=name;
     this.pickedUserFlag=true;
 
     this.service.getPropertyByUser(id).pipe(first()).subscribe(

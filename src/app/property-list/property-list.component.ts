@@ -17,6 +17,7 @@ export class PropertyListComponent implements OnInit {
   pickedUserFlag=false;
   pickeduser:any;
   pickedusersproperties:any;
+  pickedUsername: any;
   constructor(private service:HttpDataService) {}
 
   ngOnInit(): void {
@@ -41,8 +42,9 @@ export class PropertyListComponent implements OnInit {
     );
   }
  
-  getPickedUserProperies(id:number){
+  getPickedUserProperies(id:number,name:string){
     this.pickedUserid=id;
+    this.pickedUsername=name;
     this.pickedUserFlag=true;
 
     this.service.getPropertyByUser(id).pipe(first()).subscribe(
