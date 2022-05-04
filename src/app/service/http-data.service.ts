@@ -55,9 +55,9 @@ export class HttpDataService {
     this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property';
     return this.http.put(this.url,property);
   }
-  deleteProperty(property:any){
-    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property';
-    return this.http.delete(this.url,property);
+  deleteProperty(id:number){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property/'+id;
+    return this.http.delete(this.url);
   }
   getRepair(id: number){
     this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair/'+id;
@@ -80,9 +80,9 @@ export class HttpDataService {
     this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair';
     return this.http.put(this.url,repair);
   }
-  deleteRepair(repair:any){
-    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair';
-    return this.http.delete(this.url,repair);
+  deleteRepair(id:number){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/repair/'+id;
+    return this.http.delete(this.url);
   }
 
 }

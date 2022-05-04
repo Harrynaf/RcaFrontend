@@ -13,6 +13,9 @@ import { PropertyFormComponent } from './property-form/property-form.component';
 import { UniquePipe } from './pipes/unique.pipe';
 import { RepairFormComponent } from './repair-form/repair-form.component';
 import { FormsModule } from '@angular/forms';
+import { AdminDemoComponent } from './admin-demo/admin-demo.component';
+import { LoginDemoComponent } from './login-demo/login-demo.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { FormsModule } from '@angular/forms';
     UserFormComponent,
     PropertyFormComponent,
     UniquePipe,
-    RepairFormComponent
+    RepairFormComponent,
+    AdminDemoComponent,
+    LoginDemoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

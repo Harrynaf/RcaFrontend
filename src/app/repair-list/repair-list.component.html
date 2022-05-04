@@ -1,7 +1,7 @@
-<div [hidden] = "pickedUserFlag">
+<div [hidden] = "loggedUserFlag">
     <h4>Pick a repair</h4> 
     <div class="card-container">
-    <div *ngFor="let r of repairs.values()" class="card m-3" style="width: 10rem; height:70px;" [routerLink]="['/repair-list/repair-form', r.id]">
+    <div *ngFor="let r of repairs.values()" class="card m-3" style="width: 10rem; height:70px;" [routerLink]="['repair-form', r.id]">
       <img [src]="" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title">{{r.type}}</h5>
@@ -11,7 +11,7 @@
     </div>  
     </div>
     </div> 
-    <h4>Or find by user</h4> 
+    <!-- <h4>Or find by user</h4> 
     <h4>(Emulate logged in scenario)</h4> 
     <div class="card-container">
     <div *ngFor="let u of users.values()" class="card m-3" style="width: 10rem;" (click)= getPickedUserProperies(u.id,u.username)>
@@ -21,12 +21,11 @@
             <p class="card-text">{{ u.email }}</p>
       </div>
     </div>  
-    </div>  
-    <div [hidden] = "!pickedUserFlag" *ngIf="pickedUserFlag">
-      <h3>Logged in as {{pickedUsername}}</h3> 
-      <h4>Now pick a property</h4> 
+    </div>   -->
+    <div [hidden] = "!loggedUserFlag" *ngIf="loggedUserFlag">
+      <h4>Pick a property</h4> 
       <div class="card-container">
-      <div *ngFor="let p of pickedusersproperties.values()" class="card m-3" style="width: 10rem;" (click)= getPickedPropertyRepairs(p.id)>
+      <div *ngFor="let p of loggedusersproperties.values()" class="card m-3" style="width: 10rem;" (click)= getPickedPropertyRepairs(p.id)>
         <img [src]="" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{p.eCode}}</h5>
@@ -38,7 +37,7 @@
       <div [hidden] = "!pickedPropertyFlag" *ngIf="pickedPropertyFlag">
         <h4>Pick a repair</h4> 
         <div class="card-container">
-        <div *ngFor="let r of pickedpropertyrepairs.values()" class="card m-3" style="width: 10rem; height:70px;" [routerLink]="['/repair-list/repair-form', r.id]">
+        <div *ngFor="let r of pickedpropertyrepairs.values()" class="card m-3" style="width: 10rem; height:70px;" [routerLink]="['repair-form', r.id]">
           <img [src]="" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">{{r.type}}</h5>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { HttpDataService } from '../service/http-data.service';
 
@@ -13,11 +14,16 @@ export class PropertyListComponent implements OnInit {
   users: any;
   properties:any;
   loading:boolean = true;
-  pickedUserid=0;
-  pickedUserFlag=false;
-  pickedusersproperties:any;
-  pickedUsername: any;
-  constructor(private service:HttpDataService) {}
+  loggedUserid=0;
+  loggedUserFlag=false;
+  loggedusersproperties:any;
+  constructor(private _Activatedroute:ActivatedRoute,private service:HttpDataService) { 
+    let URL = window.location.href;
+    let URL_AS_LIST = (URL).split('/');
+    this.loggedUserid = parseInt(URL_AS_LIST[4]);
+    if (!isNaN(this.loggedUserid))
+    this.getLoggedUserProperies();
+    };
 
   ngOnInit(): void {
     this.requestData();
@@ -41,14 +47,12 @@ export class PropertyListComponent implements OnInit {
     );
   }
  
-  getPickedUserProperies(id:number,name:string){
-    this.pickedUserid=id;
-    this.pickedUsername=name;
-    this.pickedUserFlag=true;
+  getLoggedUserProperies(){
+    this.loggedUserFlag=true;
 
-    this.service.getPropertyByUser(id).pipe(first()).subscribe(
+    this.service.getPropertyByUser(this.loggedUserid).pipe(first()).subscribe(
       data => {
-        this.pickedusersproperties = data;
+        this.loggedusersproperties = data;
       },
       error => {},
       () => {this.loading = false;}
