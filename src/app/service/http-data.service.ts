@@ -30,14 +30,10 @@ export class HttpDataService {
     this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user';
     return this.http.put(this.url,user);
   }
-  deleteUser(user:any){
-    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user';
-    return this.http.delete(this.url,user);
+  deleteUser(id:number){
+    this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user/'+id;
+    return this.http.delete(this.url);
   }
-  // deleteUser(id:number){
-  //   this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/user/'+id;
-  //   return this.http.delete(this.url);
-  // }
   getProperty(id: number){
     this.url = 'http://localhost:8080/RCAFullstack-1.0-SNAPSHOT/property/'+id;
     console.log(this.url);

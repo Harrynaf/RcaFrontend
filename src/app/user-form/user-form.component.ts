@@ -12,6 +12,7 @@ import { HttpDataService } from '../service/http-data.service';
 export class UserFormComponent implements OnInit {
 
         user: any;
+        responseUser:any;
         alteredUser={
           id:0,
           username: "",
@@ -57,7 +58,6 @@ export class UserFormComponent implements OnInit {
     );
   }
   ngOnInit(): void {
-    
   }
   onSubmit(f: NgForm) {
     //
@@ -92,23 +92,20 @@ export class UserFormComponent implements OnInit {
     console.log(this.alteredUser);
 
     if(f.value.option=="update")
-    {this.service.updateUser(this.alteredUser).pipe(first()).subscribe(
-      data => {
-        this.user = data;
-      },
-      error => {},
-      () => {this.loading = false;}
-    );
-    this.message="User updated!";}
+    this.update();
 
 
     if(f.value.option=="delete")
-    {this.service.deleteUser(this.alteredUser).subscribe(() => this.message = 'Delete successful');}
-
+    this.delete();
+    
 
     if(f.value.option=="create")
-    {
-      this.newUser.username=f.value.username;
+      this.create(f);
+
+  }
+
+  create(f: any){
+    this.newUser.username=f.value.username;
       this.newUser.password=f.value.password;
       this.newUser.vat=f.value.vat;
       this.newUser.name=f.value.name;
@@ -120,11 +117,33 @@ export class UserFormComponent implements OnInit {
 
       this.service.createUser(this.newUser).pipe(first()).subscribe(
       data => {
-        this.user = data;
+        this.responseUser = data;
       },
       error => {},
       () => {this.loading = false;}
-    );;
-      this.message="User created!";}
-  }
+    );
+    if (this.responseUser.id ==-1)
+      {this.message="User taken";}
+      else {this.message="User created!";
+      this.user=this.responseUser;}}
+
+      delete(){
+        this.service.deleteUser(this.alteredUser.id).subscribe(
+          data => {
+            this.message = data;
+          });    
+      }
+      update(){
+        this.service.updateUser(this.alteredUser).pipe(first()).subscribe(
+          data => {
+            this.responseUser = data;
+          },
+          error => {},
+          () => {this.loading = false;}
+        );
+        if (this.responseUser.id ==-1)
+        this.message="User not found";
+        else {this.message="User updated!";
+        this.user=this.responseUser;}
+      }
 }

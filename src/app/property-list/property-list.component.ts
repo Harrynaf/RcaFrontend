@@ -15,7 +15,6 @@ export class PropertyListComponent implements OnInit {
   loading:boolean = true;
   pickedUserid=0;
   pickedUserFlag=false;
-  pickeduser:any;
   pickedusersproperties:any;
   pickedUsername: any;
   constructor(private service:HttpDataService) {}
