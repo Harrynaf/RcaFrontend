@@ -132,6 +132,7 @@ export class UserFormComponent implements OnInit {
           data => {
             this.message = data;
           });    
+          this.message = "Deleted";
       }
       update(){
         this.service.updateUser(this.alteredUser).pipe(first()).subscribe(

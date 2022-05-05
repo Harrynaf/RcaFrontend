@@ -25,17 +25,19 @@
     <div [hidden] = "!loggedUserFlag" *ngIf="loggedUserFlag">
       <h4>Pick a property</h4> 
       <div class="card-container">
-      <div *ngFor="let p of loggedusersproperties.values()" class="card m-3" style="width: 10rem;" (click)= getPickedPropertyRepairs(p.id)>
+      <div *ngFor="let p of loggedusersproperties.values()" class="card m-3" style="width: 10rem; height:70px;" (click)= getPickedPropertyRepairs(p.id)>
         <img [src]="" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{p.eCode}}</h5>
               <p class="card-text">{{ p.address }}</p>
+               <p class="card-text">Id={{ p.id }}</p>
         </div>
       </div>  
       </div>
       </div>
       <div [hidden] = "!pickedPropertyFlag" *ngIf="pickedPropertyFlag">
         <h4>Pick a repair</h4> 
+        <button class="btn btn-lg btn-primary btn-block" style="margin:0 auto;" type="submit" [routerLink]="['repair-form','0']">Create new</button>
         <div class="card-container">
         <div *ngFor="let r of pickedpropertyrepairs.values()" class="card m-3" style="width: 10rem; height:70px;" [routerLink]="['repair-form', r.id]">
           <img [src]="" class="card-img-top">

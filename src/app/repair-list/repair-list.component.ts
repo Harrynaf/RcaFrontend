@@ -20,6 +20,7 @@ export class RepairListComponent implements OnInit {
   pickedPropertyFlag= false;
   pickedpropertyrepairs: any;
   loggedUserFlag=false;
+  pickePropertyId=0;
   constructor(private _Activatedroute:ActivatedRoute,private service:HttpDataService) { 
     let URL = window.location.href;
     let URL_AS_LIST = (URL).split('/');
@@ -66,6 +67,7 @@ export class RepairListComponent implements OnInit {
 
   getPickedPropertyRepairs(id:number){
     this.pickedPropertyFlag=true;
+    this.pickePropertyId=id;
     this.service.getRepairByProperty(id).pipe(first()).subscribe(
       data => {
         this.pickedpropertyrepairs = data;

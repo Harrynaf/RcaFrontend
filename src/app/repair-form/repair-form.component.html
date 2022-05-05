@@ -31,6 +31,10 @@
                     <label for="toDoDesc">To do</label>
                       <input type="text" name="toDoDesc" class="form-control" value="{{repair.toDoDesc}}" required="" ngModel>     
                     </div>
+                    <div class="form-label-group">
+                      <label for="propertyID">propertyID (Input in Create only)</label>
+                        <input type="text" name="propertyID" class="form-control" required="" ngModel>     
+                      </div>
   
     <div class="select">
         <select name="option" ngModel>
@@ -42,3 +46,4 @@
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm</button>
   </form>
+  <h2>{{message}}</h2>
